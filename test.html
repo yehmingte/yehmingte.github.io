@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<!-- Stylesheets-->
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="static/css/css.css">
+		<link rel="stylesheet" href="static/css/style.css">
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	<!-- RD Mailform-->
+							<form data-form-output="form-output-global" data-form-type="contact" class="rd-mailform rd-mailform-inline">
+								<div class="form-group">
+									<label for="date" class="form-label">入住日期</label>
+									<input id="date1" data-time-picker="date" type="text" name="Date1" data-constraints="@Required" class="form-control form-control-gray-base">
+								</div>
+								<div class="form-group">
+									<label for="date" class="form-label">退房日期</label>
+									<input id="date2" data-time-picker="date" type="text" name="Date2" data-constraints="@Required" class="form-control form-control-gray-base">
+								</div>
+	
+								<!--Select 2-->
+								<div class="form-group">
+									<select name="Number" id="contact-number" data-minimum-results-for-search="Infinity" data-constraints="@Required" class="form-control form-control-gray-base select-filter">
+										<option>所需房數</option>
+										<option value="1間">1間</option>
+										<option value="2間">2間</option>
+										<option value="3間">3間</option>
+										<option value="4間">4間</option>
+										<option value="5間">5間</option>
+										<option value="6間">6間</option>
+										<option value="包棟">包棟</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="contact-name" class="form-label">姓名</label>
+									<input id="contact-name" type="text" name="Name" data-constraints="@Required" class="form-control form-control-gray-base">
+								</div>
+								<div class="form-group">
+									<label for="contact-phone" class="form-label">電話</label>
+									<input id="contact-phone" type="text" name="Phone" data-constraints="@Required @Integer" class="form-control form-control-gray-base">
+								</div>
+								<div class="form-group">
+									<label for="contact-email" class="form-label">信箱</label>
+									<input id="contact-email" type="text" name="Email" data-constraints="@Required @Email" class="form-control form-control-gray-base">
+								</div>
+								<div class="form-group">
+									<label for="contact-message" class="form-label">備註</label>
+									<input id="contact-message" type="text" name="Message" data-constraints="@Required" class="form-control form-control-gray-base">
+								</div>
+								<button type="button" id="submit" class="btn btn-primary btn-sm">Send inquiry room</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>			
+			
+			<!--google JS-->
+				<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+				<script>
+				  $(function() {
+				    $('#submit').on('click', function() {
+				      
+				      // 入住日期
+				      var d1 = $('#date1').val() || '未填寫';
+					  
+					  // 退房日期
+					  var d2 = $('#date2').val() || '未填寫';
+					  
+					  // 所需房间
+					  var d3 = $('#contact-number').val() || '未填寫';
+					  
+					  // 姓名
+					  var d4 = $('#contact-name').val() || '未填寫';
+					  
+					  // 电话
+					  var d5 = $('#contact-phone').val() || '未填寫';
+					  
+					  // 信箱
+					  var d6 = $('#contact-email').val() || '未填寫';
+					  
+					  // 备注
+					  var d7 = $('#contact-message').val() || '未填寫';
+		
+				    
+				      // post
+				      var data = {
+				        'entry.562177871': d1,
+				        'entry.349834032': d2,
+				        'entry.1023762950': d3,
+				        'entry.1348957608': d4,
+						'entry.976641680': d5,
+						'entry.216036030': d6,
+						'entry.467038158': d7
+				      };
+						
+				      $.ajax({
+				        type: 'POST',
+				        url: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLScJ_-22tc2r6Ihssa43r1IQ6hth9K0YJFoRQuAskl4b4w5Ppw/formResponse',
+				        data: data,
+				        contentType: 'application/json',
+				        dataType: 'jsonp',
+				        complete: function() {
+				          alert('資料已送出');
+							window.location.href="test.html"
+				        }
+				      });
+				    });
+				  });
+				</script>
+	
+	<h2>创建模态框（Modal）</h2>
+	<!-- 按钮触发模态框 -->
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		开始演示模态框
+	</button>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						模态框（Modal）标题
+					</h4>
+				</div>
+				<div class="modal-body">
+					在这里添加一些文本
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
+	
+	</body>
+</html>
